@@ -22,34 +22,28 @@ function checkGuess(guess, solution) {
   // first determine how many characters total the two strings have in common
   // This may help:
   // https://github.com/bonnie/udemy-ENZYME/blob/master/context-base/src/helpers/index.js
-    const numberGuessed = guess.split('');
-    const secretNumber = new Set(solution);
-    let commonMatches = secretNumber.filter(digit => secretNumber.has(digit)).length;
-
   // then determine how many of those characters are in the right place
   // hint: iterate through characters of guess and compare to character
   // in the same position in solution
-  function exactMatches(numberGuessed,secretNumber){
-    let exactMatches = 0;
-    let lengthOfGuess = guess.length;
-    if(numberGuessed.length !== secretNumber.length) return 0;
-    for(let i = 0; i < lengthOfGuess; i++){
-        if(numberGuessed[i] == secretNumber[i]){
-            exactMatches++;
-        }
-    }
-    return exactMatches;
-  }
-
-  let matches = exactMatches(numberGuessed,secretNumber);
-
   // finally, return a string in the format
   // "count of correct characters in the right place"-"count of correct
   // characters not in the right place"
   // for example, "2-1"
   //
+    const secretNumber = solution.split('');
+    const numberGuessed = new Set(solution);
+    let numbersInCommon = secretNumber.filter(digit => numberGuessed.has(digit)).length;
+    let exactMatches = 0;
 
-  let gameResults = exactMatches+"-"+commonMatches;
+    if(guess.length !== solution.length) return "Must guess a 4-digit number";
+    for(let i = 0; i < guess.length; i++){
+        if(guess[i] == solution[i]){
+            exactMatches++;
+        }
+    }
+    return `${exactMatches}-${numbersInCommon}`;
+
+  
 }
 
 // https://jsdoc.app
