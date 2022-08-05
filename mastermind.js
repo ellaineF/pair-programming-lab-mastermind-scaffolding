@@ -31,11 +31,11 @@ function checkGuess(guess, solution) {
   // for example, "2-1"
   //
     const secretNumber = solution.split('');
-    const numberGuessed = new Set(solution);
+    const numberGuessed = new Set(guess);
     let numbersInCommon = secretNumber.filter(digit => numberGuessed.has(digit)).length;
     let exactMatches = 0;
 
-    if(guess.length !== solution.length) return "Must guess a 4-digit number";
+    if(guess.length !== solution.length) return "Must guess a "+guess.length+"-digit number";
     for(let i = 0; i < guess.length; i++){
         if(guess[i] == solution[i]){
             exactMatches++;
