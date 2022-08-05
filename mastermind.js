@@ -29,7 +29,7 @@ function checkGuess(guess, solution) {
   // "count of correct characters in the right place"-"count of correct
   // characters not in the right place"
   // for example, "2-1"
-  //
+
     const secretNumber = solution.split('');
     const numberGuessed = new Set(guess);
     let numbersInCommon = secretNumber.filter(digit => numberGuessed.has(digit)).length;
@@ -42,8 +42,6 @@ function checkGuess(guess, solution) {
         }
     }
     return `${exactMatches}-${numbersInCommon}`;
-
-  
 }
 
 // https://jsdoc.app
